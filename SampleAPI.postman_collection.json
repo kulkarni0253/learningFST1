@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "eb208072-e7b1-4deb-ad0e-8511cddfd293",
+		"name": "SampleAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30760937",
+		"_collection_link": "https://gold-rocket-222316.postman.co/workspace/learning~79c240d1-5ebc-4ad1-94fd-6f9bddd30ca6/collection/30760937-eb208072-e7b1-4deb-ad0e-8511cddfd293?action=share&source=collection_link&creator=30760937"
+	},
+	"item": [
+		{
+			"name": "LIST USERS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repositories",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repositories"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "IBM_Token",
+			"value": "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",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "047f589d-d59b-4954-a444-9b7a3f0778bc",
+		"name": "GITHUBExamples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30760937",
+		"_collection_link": "https://gold-rocket-222316.postman.co/workspace/learning~79c240d1-5ebc-4ad1-94fd-6f9bddd30ca6/collection/30760937-047f589d-d59b-4954-a444-9b7a3f0778bc?action=share&source=collection_link&creator=30760937"
+	},
+	"item": [
+		{
+			"name": "Checking_Existing-Repository",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Creating_New_Repository",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "API Testing Learning",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"APIcreatedRepo\"\r\n}"
+				},
+				"url": {
+					"raw": "https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-an-organization-repository",
+					"protocol": "https",
+					"host": [
+						"docs",
+						"github",
+						"com"
+					],
+					"path": [
+						"en",
+						"rest",
+						"repos",
+						"repos"
+					],
+					"query": [
+						{
+							"key": "apiVersion",
+							"value": "2022-11-28"
+						}
+					],
+					"hash": "create-an-organization-repository"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckPublicRepo",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "list-repositories-for-the-authenticated-user",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a repository for the authenticated user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\" : \"APICreatedRepo\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a repository",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/repos/kulkarni0253/APICreatedRepo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"kulkarni0253",
+						"APICreatedRepo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a repository",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string_Name_Check\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Test1\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"owner\" : \"kulkarni0253\",\r\n    \"repo\" : \"APICreatedRepo\",\r\n    \"name\" : \"APICreatedRepoTest1\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "https://api.github.com/repos/kulkarni0253/APICreatedRepo",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"kulkarni0253",
+						"APICreatedRepo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "IBM_Token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "IBM_Token_Full_Access",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

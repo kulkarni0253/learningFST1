@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "58861ac6-7549-43e9-b054-b8ceb01eb703",
+		"name": "batch2_reqres",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7629404",
+		"_collection_link": "https://bold-meadow-608727.postman.co/workspace/IBM_Oct2023~675dc87f-2eb4-4e41-9715-f329be259ec6/collection/7629404-58861ac6-7549-43e9-b054-b8ceb01eb703?action=share&source=collection_link&creator=7629404"
+	},
+	"item": [
+		{
+			"name": "listuser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC_01_verifyStatusCode\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_02_verifyResponse\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.text()).to.include(\"michael.lawson@reqres.in\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03_Response time is less than 200ms\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_04_response\", function () {\r",
+							"    var x = pm.response.json();\r",
+							"    pm.expect(x.data[5].email).to.eql(\"rachel.howell@reqres.in\");\r",
+							"    pm.expect(x.data[5].first_name).to.eql(\"Rachel\");\r",
+							"    pm.expect(x.data[5].last_name).to.eql(\"Howell\");\r",
+							"    pm.expect(x.data[5].id).to.eql(12);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"TC_05\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[4].email).to.eql(\"rachel.howell@reqres.in\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Createuser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC_01_verifyStatusCode\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_02_verifyResponse\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.text()).to.include(\"lavanya\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03_Response time is less than 200ms\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_04_response\", function () {\r",
+							"    var x = pm.response.json();\r",
+							"    pm.expect(x.name).to.eql(\"lavanya\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"lavanya\",\r\n    \"job\": \"sr. leader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC_01_verifyStatusCode\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_02_verifyResponse\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.text()).to.include(\"lavanya\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_03_Response time is less than 200ms\", function () {\r",
+							"\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC_04_response\", function () {\r",
+							"    var x = pm.response.json();\r",
+							"    pm.expect(x.name).to.eql(\"lavanya\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"lavanya\",\r\n    \"job\": \"sr. leader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleteuser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
